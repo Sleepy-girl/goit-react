@@ -1,11 +1,15 @@
 import React from 'react';
-// import stats from '../../data/statistical-data.json';
 import styles from './Statistics.module.css';
+import PropTypes from 'prop-types';
+
+const randomColor = () => {
+  const r = Math.floor(Math.random() * 255 + 1);
+  const g = Math.floor(Math.random() * 255 + 1);
+  const b = Math.floor(Math.random() * 255 + 1);
+  return `rgb(${r}, ${g}, ${b})`;
+};
 
 function Statistics({ title, stats }) {
-  console.log('title', title);
-  console.log('stats', stats);
-
   return (
     <>
       <section className={styles.statistics}>
@@ -13,7 +17,13 @@ function Statistics({ title, stats }) {
 
         <ul className={styles.statList}>
           {stats.map(stat => (
-            <li key={stat.id} className={styles.item}>
+            <li
+              key={stat.id}
+              className={styles.item}
+              style={{
+                backgroundColor: randomColor(),
+              }}
+            >
               <span className={styles.label}>{stat.label}</span>
               <span className={styles.percentage}>{stat.percentage}%</span>
             </li>
@@ -23,5 +33,11 @@ function Statistics({ title, stats }) {
     </>
   );
 }
+
+Statistics.propTypes = {
+  id: PropTypes.string,
+  label: PropTypes.string,
+  percentage: PropTypes.number,
+};
 
 export default Statistics;

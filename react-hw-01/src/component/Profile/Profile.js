@@ -1,6 +1,6 @@
 import React from 'react';
-// import user from '../../data/user.json';
 import styles from './Profile.module.css';
+import PropTypes from 'prop-types';
 
 function Profile({ name, tag, location, avatar, stats }) {
   // const { name, tag, location, avatar, stats } = user;
@@ -8,7 +8,6 @@ function Profile({ name, tag, location, avatar, stats }) {
   return (
     <>
       <div className={styles.profile}>
-        {/* <div className={[styles.profile, styles.profile123].join(" ")}> */}
         <div className={styles.description}>
           <img src={avatar} alt="user avatar" className={styles.avatar} />
           <p className={styles.name}>{name}</p>
@@ -35,9 +34,21 @@ function Profile({ name, tag, location, avatar, stats }) {
   );
 }
 
-Profile.defaultProps = {
-  avatar:
-    'https://i.pinimg.com/originals/a0/40/66/a04066a2d1fcf25df39c599e093995c8.jpg',
+Profile.propType = {
+  name: PropTypes.string.isRequired,
+  tag: PropTypes.string,
+  location: PropTypes.string,
+  avatar: PropTypes.string,
+  stats: PropTypes.shape({
+    followers: PropTypes.number,
+    views: PropTypes.number,
+    likes: PropTypes.number,
+  }),
 };
+
+// Profile.defaultProps = {
+//   avatar:
+//     'https://i.pinimg.com/originals/a0/40/66/a04066a2d1fcf25df39c599e093995c8.jpg',
+// };
 
 export default Profile;
